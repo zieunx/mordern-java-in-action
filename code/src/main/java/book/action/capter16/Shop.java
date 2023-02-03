@@ -45,7 +45,7 @@ public class Shop {
      */
     private static void delay() {
         try {
-            Thread.sleep(1000L);
+            Thread.sleep(10000L);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

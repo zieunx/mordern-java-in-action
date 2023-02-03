@@ -2,6 +2,7 @@ package book.action.capter16;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 public class ShopApplication {
     public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class ShopApplication {
         doSomethingElse();
 
         try {
-            Double price = futurePrice.get();
+            Double price = futurePrice.get(1, TimeUnit.SECONDS);
             System.out.printf("Price is %.2f%n", price);
         } catch (Exception e) {
             throw new RuntimeException(e);
