@@ -1,6 +1,5 @@
 package book.action.capter16;
 
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +8,7 @@ public class ShopApplication {
         Shop shop = new Shop("BestShop");
         long start = System.nanoTime();
 
-        Future<Double> futurePrice = shop.getPriceAsync("my favorite product");
+        Future<Double> futurePrice = shop.getPriceAsync("ex");
 
         long invocationTime = (System.nanoTime() - start) / 1_000_000;
         System.out.println("Invocation returned after " + invocationTime + "msecs");
@@ -17,7 +16,7 @@ public class ShopApplication {
         doSomethingElse();
 
         try {
-            Double price = futurePrice.get(1, TimeUnit.SECONDS);
+            Double price = futurePrice.get(2, TimeUnit.SECONDS);
             System.out.printf("Price is %.2f%n", price);
         } catch (Exception e) {
             throw new RuntimeException(e);
