@@ -8,7 +8,7 @@ public class ShopApplication {
         Shop shop = new Shop("BestShop");
         long start = System.nanoTime();
 
-        Future<Double> futurePrice = shop.getPriceAsync("ex");
+        Future<Double> futurePrice = shop.getPriceAsync("product");
 
         long invocationTime = (System.nanoTime() - start) / 1_000_000;
         System.out.println("Invocation returned after " + invocationTime + "msecs");

@@ -27,20 +27,12 @@ public class Shop {
      * @return
      */
     public Future<Double> getPriceAsync(String product) {
-        CompletableFuture<Double> futurePrice = new CompletableFuture<>();
-        new Thread(() -> { // 실제 가격을 계산할 다른 스레드
-
-            try {
-                double price = calculatePrice(product);
-                futurePrice.complete(price);
-            } catch (Exception e) {
-                futurePrice.completeExceptionally(e); // 발생한 에러를 포함하여 Future 종료
-            }
-        }).start();
-        return futurePrice;
+        System.out.println("[" + Thread.currentThread().getName() + "]" + "getPriceAsync()");
+        return CompletableFuture.supplyAsync(() -> calculatePrice(product));
     }
 
     private double calculatePrice(String product) {
+        System.out.println("[" + Thread.currentThread().getName() + "]" + "calculatePrice()");
         if (product.equals("ex")) {
             throw new RuntimeException("product not available");
         }
